@@ -27,6 +27,9 @@
 
        procedure division.
 
+           display "dd_airports" upon environment-name
+           display "..\airports.dat" upon environment-value
+           
            set open-file to true
            perform call-aircode-program
 
