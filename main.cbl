@@ -18,7 +18,7 @@
        program-id main.
 
        working-storage section.
-       01  user-input      pic x(80).
+       01 Args             Pic x(128).
 
        local-storage section.
        copy "airparams.cpy" replacing ==(ap-prefix)== by ==ls==.
@@ -26,25 +26,23 @@
        copy "airrec.cpy" replacing ==(prefix)== by ==ap==.
 
        procedure division.
-
-           display "dd_airports" upon environment-name
-           display "..\airports.dat" upon environment-value
            
            set open-file to true
            perform call-aircode-program
 
-           perform until exit
-               display "Enter an airport code, or two codes " &
-                       "separated by space, or no code to exit:"
-               accept user-input
-               unstring user-input delimited by space
-                   into ls-airport1, ls-airport2
+           Accept Args From COMMAND-LINE
 
-               if ls-airport1 = spaces
-                   exit perform
-               end-if
+           Unstring Args Delimited By Space
+               Into ls-airport1, ls-airport2
+           End-Unstring
 
-               if ls-airport2 not = spaces
+           If ls-airport1 Not Equal Spaces
+               Move ls-airport1 To ls-airport1                 
+           End-If
+
+           If ls-airport2 Not Equal Spaces
+                   Move ls-airport2 To ls-airport2
+
                    set get-distance to true
                    perform call-aircode-program
                    display "Distance: " distance-km "kms"
@@ -60,7 +58,7 @@
                        perform call-aircode-program
                    end-if
                end-if
-           end-perform
+
 
            set close-file to true
            perform call-aircode-program

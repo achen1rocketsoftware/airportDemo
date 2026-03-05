@@ -26,11 +26,8 @@
 	<property name="mf.entryPoint.cfg.New_Configuration" value=""/>
 	<property name="mf.destDir.cfg.New_Configuration" value="${basedir}/New_Configuration.bin"/>
 	<property name="mf.rdfpath" value="${basedir}/New_Configuration.bin"/>
-	<property name="mf.entryPoint.cfg.New_Configuration_UNIX" value="main"/>
-	<property name="mf.destDir.cfg.New_Configuration_UNIX" value="${basedir}/New_Configuration.bin"/>
-	<property name="mf.rdfpath" value="${basedir}/New_Configuration.bin"/>
-	<property name="mf.sdkLocation" value="C:\Program Files (x86)\Micro Focus\Visual COBOL\Microsoft\SDK\10\Bin\10.0.19041.0\"/>
-	<property name="mf.buildToolsLocation" value="C:\Program Files (x86)\Micro Focus\Visual COBOL\Microsoft\VC\Tools\MSVC\14.38.33130\bin\Host"/>
+	<property name="mf.sdkLocation" value="C:\Program Files (x86)\Micro Focus\Visual COBOL\\Microsoft\SDK\10\Bin\10.0.19041.0\"/>
+	<property name="mf.buildToolsLocation" value="C:\Program Files (x86)\Micro Focus\Visual COBOL\\Microsoft\VC\Tools\MSVC\14.38.33130\bin\Host"/>
 	<target name="printLocations">
 		<echo message="Project Location: &apos;pathVar.PROJECT_LOC&apos;=${pathVar.PROJECT_LOC}"/>
 		<echo message="Project Location: &apos;pathVar.WORKSPACE_LOC&apos;=${pathVar.WORKSPACE_LOC}"/>
@@ -104,26 +101,19 @@
 	<!--  ********************************  -->
 	<!-- Configuration:New_Configuration -->
 	<target name="FileCompile.New_Configuration.cobol">
-		<cobol debug="true" configuration="New Configuration" analysisData="${analysisData}" threadCount="${mf.buildThreadCount}" settingsDir="${mf.settingsDir}" threadedRts="true" analysisDataDir="${analysisDataDir}" useDirectiveSet="${mf.useDirectiveSet}" srcfile="${fullFileName}" destdir="${basedir}/New_Configuration.bin" is64bit="false" failonerror="${mf.cobolFailOnError}" srcdir="${basedir}" forceCompile="${mf.forceCompile}" connectionName="${mf.connectionName}" projectName="${mf.projectName}" desttype="obj">
+		<cobol debug="true" configuration="New Configuration" analysisData="${analysisData}" threadCount="${mf.buildThreadCount}" settingsDir="${mf.settingsDir}" threadedRts="true" analysisDataDir="${analysisDataDir}" useDirectiveSet="${mf.useDirectiveSet}" srcfile="${fullFileName}" destdir="${basedir}/New_Configuration.bin" is64bit="true" failonerror="${mf.cobolFailOnError}" srcdir="${basedir}" forceCompile="${mf.forceCompile}" connectionName="${mf.connectionName}" projectName="${mf.projectName}" desttype="obj">
 			<mffilelist refid="cobol.copybook.locations"/>
 			<mfdirlist refid="cobol_directive_set_1"/>
 		</cobol>
 		<for param="baseName" parallel="true" delimiter="," threadCount="${mf.buildThreadCount}" list="${fileBaseName}">
 			<sequential>
-				<cobollink debug="true" destfile="@{baseName}" entrypoint="${mf.entryPoint.cfg.New_Configuration}" sharedRts="true" destdir="${mf.destDir.cfg.New_Configuration}" is64bit="false" objectdir="${basedir}/New_Configuration.bin" failonerror="${mf.cobollinkFailOnError}" desttype="dll/cso" threadedRts="true">
+				<cobollink debug="true" destfile="@{baseName}" entrypoint="${mf.entryPoint.cfg.New_Configuration}" sharedRts="true" destdir="${mf.destDir.cfg.New_Configuration}" is64bit="true" objectdir="${basedir}/New_Configuration.bin" failonerror="${mf.cobollinkFailOnError}" desttype="dll/cso" threadedRts="true">
 					<mffilelist srcdir="${basedir}/New_Configuration.bin">
 						<file name="@{baseName}${mf.objext}" objlist="@{basename}.objlist"/>
 					</mffilelist>
 				</cobollink>
 			</sequential>
 		</for>
-	</target>
-	<!-- Configuration:New_Configuration_UNIX -->
-	<target name="FileCompile.New_Configuration_UNIX.cobol">
-		<cobol debug="true" configuration="New_Configuration_UNIX" analysisData="${analysisData}" threadCount="${mf.buildThreadCount}" settingsDir="${mf.settingsDir}" threadedRts="true" analysisDataDir="${analysisDataDir}" useDirectiveSet="${mf.useDirectiveSet}" srcfile="${fullFileName}" destdir="${basedir}/New_Configuration.bin" is64bit="false" failonerror="${mf.cobolFailOnError}" srcdir="${basedir}" forceCompile="${mf.forceCompile}" connectionName="${mf.connectionName}" projectName="${mf.projectName}" desttype="obj">
-			<mffilelist refid="cobol.copybook.locations"/>
-			<mfdirlist refid="cobol_directive_set_1"/>
-		</cobol>
 	</target>
 	<!--  ****************  -->
 	<!--  * Object files *  -->
@@ -133,23 +123,12 @@
 		<file name="main${mf.objext}" objlist="main.objlist"/>
 		<file name="aircode${mf.objext}" objlist="aircode.objlist"/>
 	</mffilelist>
-	<mffilelist id="cobol.default.object.files.New_Configuration_UNIX" srcdir="${basedir}/New_Configuration.bin" type="objfile">
-		<file name="main${mf.objext}" objlist="main.objlist"/>
-		<file name="aircode${mf.objext}" objlist="aircode.objlist"/>
-	</mffilelist>
 	<target name="cobol.createcar.cfg.New_Configuration.property">
 		<condition property="mf.createCar.isTrue">
 			<istrue value="${mf.createCar}"/>
 		</condition>
 	</target>
 	<target name="cobol.createcar.cfg.New_Configuration" depends="cobol.createcar.cfg.New_Configuration.property" if="mf.createCar.isTrue">
-	</target>
-	<target name="cobol.createcar.cfg.New_Configuration_UNIX.property">
-		<condition property="mf.createCar.isTrue">
-			<istrue value="${mf.createCar}"/>
-		</condition>
-	</target>
-	<target name="cobol.createcar.cfg.New_Configuration_UNIX" depends="cobol.createcar.cfg.New_Configuration_UNIX.property" if="mf.createCar.isTrue">
 	</target>
 	<!--  *************************  -->
 	<!--  * Configuration targets *  -->
@@ -167,7 +146,7 @@
 		<executefilecompile filesList="${filesList}" entryList="${entryList}"/>
 	</target>
 	<target name="cobol.compile.cfg.New_Configuration">
-		<cobol debug="true" configuration="New Configuration" analysisData="${analysisData}" threadCount="${mf.buildThreadCount}" settingsDir="${mf.settingsDir}" threadedRts="true" analysisDataDir="${analysisDataDir}" useDirectiveSet="${mf.useDirectiveSet}" destdir="${basedir}/New_Configuration.bin" is64bit="false" failonerror="${mf.cobolFailOnError}" forceCompile="${mf.forceCompile}" connectionName="${mf.connectionName}" projectName="${mf.projectName}" desttype="obj">
+		<cobol debug="true" configuration="New Configuration" analysisData="${analysisData}" threadCount="${mf.buildThreadCount}" settingsDir="${mf.settingsDir}" threadedRts="true" analysisDataDir="${analysisDataDir}" useDirectiveSet="${mf.useDirectiveSet}" destdir="${basedir}/New_Configuration.bin" is64bit="true" failonerror="${mf.cobolFailOnError}" forceCompile="${mf.forceCompile}" connectionName="${mf.connectionName}" projectName="${mf.projectName}" desttype="obj">
 			<mffilelist refid="cobol.copybook.locations"/>
 			<mfdirlist refid="cobol_directive_set_1"/>
 			<mffilelist refid="cobol_file_set_1"/>
@@ -175,12 +154,12 @@
 	</target>
 	<target name="cobol.link.cfg.New_Configuration">
 		<parallel threadCount="${mf.buildThreadCount}">
-			<cobollink debug="true" destfile="main" entrypoint="${mf.entryPoint.cfg.New_Configuration}" sharedRts="true" destdir="${mf.destDir.cfg.New_Configuration}" is64bit="false" objectdir="${basedir}/New_Configuration.bin" failonerror="${mf.cobollinkFailOnError}" desttype="dll/cso" threadedRts="true">
+			<cobollink debug="true" destfile="main" entrypoint="${mf.entryPoint.cfg.New_Configuration}" sharedRts="true" destdir="${mf.destDir.cfg.New_Configuration}" is64bit="true" objectdir="${basedir}/New_Configuration.bin" failonerror="${mf.cobollinkFailOnError}" desttype="dll/cso" threadedRts="true">
 				<mffilelist srcdir="${basedir}/New_Configuration.bin">
 					<file name="main${mf.objext}" objlist="main.objlist"/>
 				</mffilelist>
 			</cobollink>
-			<cobollink debug="true" destfile="aircode" entrypoint="${mf.entryPoint.cfg.New_Configuration}" sharedRts="true" destdir="${mf.destDir.cfg.New_Configuration}" is64bit="false" objectdir="${basedir}/New_Configuration.bin" failonerror="${mf.cobollinkFailOnError}" desttype="dll/cso" threadedRts="true">
+			<cobollink debug="true" destfile="aircode" entrypoint="${mf.entryPoint.cfg.New_Configuration}" sharedRts="true" destdir="${mf.destDir.cfg.New_Configuration}" is64bit="true" objectdir="${basedir}/New_Configuration.bin" failonerror="${mf.cobollinkFailOnError}" desttype="dll/cso" threadedRts="true">
 				<mffilelist srcdir="${basedir}/New_Configuration.bin">
 					<file name="aircode${mf.objext}" objlist="aircode.objlist"/>
 				</mffilelist>
@@ -193,49 +172,9 @@
 	</target>
 	<target name="deploy.cfg.New_Configuration">
 	</target>
-	<!-- cfg.New_Configuration_UNIX -->
-	<target name="cobolbuild.cfg.New_Configuration_UNIX" depends="printLocations,pre.build.cfg.New_Configuration_UNIX,nature.specific.build.cfg.New_Configuration_UNIX,post.build.cfg.New_Configuration_UNIX,deploy.cfg.New_Configuration_UNIX"/>
-	<target name="nature.specific.build.cfg.New_Configuration_UNIX" depends="cobol.cfg.New_Configuration_UNIX"/>
-	<target name="cobol.cfg.New_Configuration_UNIX" depends="cobol.compile.cfg.New_Configuration_UNIX,cobol.link.cfg.New_Configuration_UNIX"/>
-	<target name="New_Configuration_UNIX.FileCompile">
-		<property name="fileextn.cbl" value="cobol"/>
-		<property name="fileextn.cob" value="cobol"/>
-		<property name="fileextn.pco" value="cobol"/>
-		<property name="fileextn.sqb" value="cobol"/>
-		<property name="fileextn.eco" value="cobol"/>
-		<executefilecompile filesList="${filesList}" entryList="${entryList}"/>
-	</target>
-	<target name="cobol.compile.cfg.New_Configuration_UNIX">
-		<cobol debug="true" configuration="New_Configuration_UNIX" analysisData="${analysisData}" threadCount="${mf.buildThreadCount}" settingsDir="${mf.settingsDir}" threadedRts="true" analysisDataDir="${analysisDataDir}" useDirectiveSet="${mf.useDirectiveSet}" destdir="${basedir}/New_Configuration.bin" is64bit="false" failonerror="${mf.cobolFailOnError}" forceCompile="${mf.forceCompile}" connectionName="${mf.connectionName}" projectName="${mf.projectName}" desttype="obj">
-			<mffilelist refid="cobol.copybook.locations"/>
-			<mfdirlist refid="cobol_directive_set_1"/>
-			<mffilelist refid="cobol_file_set_1"/>
-		</cobol>
-	</target>
-	<target name="cobol.link.cfg.New_Configuration_UNIX">
-		<cobollink debug="true" destfile="AirportDemo" entrypoint="${mf.entryPoint.cfg.New_Configuration_UNIX}" destdir="${mf.destDir.cfg.New_Configuration_UNIX}" is64bit="false" failonerror="${mf.cobollinkFailOnError}" desttype="exe" threadedRts="true">
-			<mffilelist refid="cobol.default.object.files.New_Configuration_UNIX"/>
-		</cobollink>
-	</target>
-	<target name="pre.build.cfg.New_Configuration_UNIX">
-	</target>
-	<target name="post.build.cfg.New_Configuration_UNIX" depends="cobol.createcar.cfg.New_Configuration_UNIX">
-	</target>
-	<target name="deploy.cfg.New_Configuration_UNIX">
-	</target>
 	<target name="clean.cfg.New_Configuration">
 		<cobolclean debug="true" destdir="${basedir}/New_Configuration.bin" desttype="dll">
 			<mffilelist refid="cobol_file_set_1"/>
-		</cobolclean>
-	</target>
-	<target name="clean.cfg.New_Configuration_UNIX">
-		<cobolclean debug="true" destdir="${basedir}/New_Configuration.bin" desttype="exe">
-			<mffilelist refid="cobol_file_set_1"/>
-		</cobolclean>
-		<cobolclean destdir="${basedir}/New_Configuration.bin" desttype="exe">
-			<mffilelist>
-				<file name="AirportDemo"/>
-			</mffilelist>
 		</cobolclean>
 	</target>
 	<!--  *******************  -->

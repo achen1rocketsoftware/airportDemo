@@ -14,6 +14,10 @@
       * on an "as is" basis and is for use at your own risk.
       *
       ******************************************************************
+       01 Parm1                               Pic 99 value zero.
+       01 Parm2                               pic 99 value zero.                
+                                   
+       
 
        01 (ap-prefix)-function                      pic x.
            88 get-matches                           value "1".
@@ -25,9 +29,11 @@
        01 (ap-prefix)-airport1                      pic x(3).
        01 (ap-prefix)-airport2                      pic x(3).
        01 (ap-prefix)-prefix-text                   pic x(3).
+       
        01 (ap-prefix)-distance-result.
            03 distance-km               pic zz,zz9.
            03 distance-miles            pic zz,zz9.
+           
        01 (ap-prefix)-matched-codes-array           pic x(300).
        01 (ap-prefix)-matched-codes                 redefines 
           (ap-prefix)-matched-codes-array pic x(30) occurs 10.

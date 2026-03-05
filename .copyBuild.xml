@@ -1,0 +1,20 @@
+<project name="MyProject" default="copy" basedir=".">
+    <target name="copy">
+        <copy todir="C:\Users\achen1\OneDrive - Rocket Software, Inc\.jenkins\workspace\airport3">
+           <fileset dir="./New_Configuration.bin">
+           
+	       <include name="*.dll"/>
+               <include name="*.exe"/>
+           </fileset>
+           
+           <fileset dir="./">
+	       <include name="*.dat"/>
+           </fileset>
+                      
+        </copy>
+
+
+    </target>
+
+</project>
+
