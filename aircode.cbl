@@ -233,7 +233,7 @@
            accept airfile-name from environment-value
            open input airfile
            if fstat-1 not = 0
-                display "Error opening airport data " airfile-name     
+                display "Error opening airport data" airfile-name     
            end-if
        .
 
