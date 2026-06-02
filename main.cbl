@@ -46,7 +46,7 @@
                    set get-distance to true
                    perform call-aircode-program
                    display "Distance: " distance-km "kms"
-                           distance-miles  "miles. <changes>"
+                           distance-miles  "miles."
                else
                    move " " to ap-code of ls-rec
                    set get-details to true
