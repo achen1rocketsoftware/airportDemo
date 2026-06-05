@@ -1,7 +1,7 @@
 <project name="MyProject" default="copy" basedir=".">
     <target name="copy">
         <copy todir="C:\Users\achen1\OneDrive - Rocket Software, Inc\.jenkins\workspace\airport3">
-           <fileset dir="./New_Configuration.bin">
+           <fileset dir="C:\Users\achen1\OneDrive - Rocket Software, Inc\.jenkins\workspace\airport1\New_Configuration.bin">
 	       <include name="*.dll"/>
                <include name="*.exe"/>
            </fileset>
